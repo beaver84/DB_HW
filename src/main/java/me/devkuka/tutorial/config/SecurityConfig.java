@@ -74,10 +74,11 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeRequests()
+                .antMatchers("/api/v1/my-room/all").hasAnyRole("USER")
                 .antMatchers("/api/hello").permitAll()
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/signup").permitAll()
-                .antMatchers("/api/hello").hasAnyRole("USER")
+                .antMatchers("/", "/**").permitAll()
 
                 .anyRequest().authenticated()
 
