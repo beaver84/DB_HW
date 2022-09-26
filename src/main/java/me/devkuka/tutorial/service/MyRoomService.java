@@ -17,4 +17,5 @@ public interface MyRoomService {
     MyRoomModifyResponse modifyMyRoom(long myRoomId, MyRoomModifyRequest myRoomRequest);
 
     void deleteMyRoom(long myRoomId);
+
 }

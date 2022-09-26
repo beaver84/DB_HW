@@ -16,21 +16,21 @@ public class MyRoomController {
 
     @GetMapping("/v1/my-room/all")
     public List<MyRoomResponse> getAllRooms(
-    ){
+    ) {
         return myRoomService.getAllRooms();
     }
 
     @GetMapping("/v1/my-room/username/{username}")
     public List<MyRoomResponse> getAllMyRooms(
-        @PathVariable String username
-    ){
+            @PathVariable String username
+    ) {
         return myRoomService.getAllMyRooms(username);
     }
 
     @GetMapping("/v1/my-room/id/{myRoomId}")
     public MyRoomResponse getMyRoomById(
             @PathVariable long myRoomId
-    ){
+    ) {
         return myRoomService.getMyRoomById(myRoomId);
     }
 
@@ -39,7 +39,7 @@ public class MyRoomController {
             @RequestBody MyRoomRequest myRoomRequest,
             @RequestBody RoomTypeRequest roomTypeRequest,
             @RequestBody List<PriceTypeRequest> PriceTypeRequests
-    ){
+    ) {
         return myRoomService.addMyRoom(myRoomRequest, roomTypeRequest, PriceTypeRequests);
     }
 
@@ -47,14 +47,14 @@ public class MyRoomController {
     public MyRoomModifyResponse modifyMyRoom(
             @RequestParam long myRoomId,
             @RequestBody MyRoomModifyRequest myRoomModifyRequest
-    ){
+    ) {
         return myRoomService.modifyMyRoom(myRoomId, myRoomModifyRequest);
     }
 
     @DeleteMapping("/v1/my-room")
     public void deleteMyRoom(
             @RequestParam long myRoomId
-    ){
+    ) {
         myRoomService.deleteMyRoom(myRoomId);
     }
 }

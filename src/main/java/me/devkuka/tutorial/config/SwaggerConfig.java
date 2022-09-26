@@ -28,7 +28,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("다방_backend 과제 Spring Boot REST API")
                 .version("1.0.0")
-                .description("배경태의 다방_backend 과제 swagger api 입니다.")
+                .description("배경태의 다방 backend 과제 swagger api 입니다.")
                 .build();
     }
 

@@ -8,4 +8,5 @@ import java.util.List;
 public interface MyRoomRepository extends JpaRepository<MyRoom, Long> {
 
     List<MyRoom> findAllByLandlord(String username);
+
 }

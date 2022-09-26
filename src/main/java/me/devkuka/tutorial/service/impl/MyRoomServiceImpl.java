@@ -10,7 +10,6 @@ import me.devkuka.tutorial.repository.PriceTypeRepository;
 import me.devkuka.tutorial.repository.RoomTypeRepository;
 import me.devkuka.tutorial.service.MyRoomService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
