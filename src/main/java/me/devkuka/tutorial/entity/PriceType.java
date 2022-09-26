@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @Entity
 @Table(name = "price_type")

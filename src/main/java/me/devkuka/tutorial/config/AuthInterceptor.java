@@ -1,6 +1,5 @@
 package me.devkuka.tutorial.config;
 
-import jdk.jshell.spi.ExecutionControl;
 import lombok.extern.slf4j.Slf4j;
 import me.devkuka.tutorial.jwt.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
