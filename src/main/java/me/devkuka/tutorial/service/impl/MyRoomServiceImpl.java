@@ -6,11 +6,14 @@ import me.devkuka.tutorial.entity.MyRoom;
 import me.devkuka.tutorial.entity.PriceType;
 import me.devkuka.tutorial.entity.RoomType;
 import me.devkuka.tutorial.repository.MyRoomRepository;
+import me.devkuka.tutorial.repository.PriceTypeRepository;
+import me.devkuka.tutorial.repository.RoomTypeRepository;
 import me.devkuka.tutorial.service.MyRoomService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +22,8 @@ import java.util.stream.Collectors;
 public class MyRoomServiceImpl implements MyRoomService {
 
     private final MyRoomRepository myRoomRepository;
+    private final RoomTypeRepository roomTypeRepository;
+    private final PriceTypeRepository priceTypeRepository;
 
     @Override
     public List<MyRoomResponse> getAllRooms() {
@@ -72,7 +77,22 @@ public class MyRoomServiceImpl implements MyRoomService {
 
         MyRoom saveResult = myRoomRepository.save(myRoomRequestToEntity);
 
+        RoomType roomTypeRequestToEntity = RoomType.builder()
+                .myRoomId(saveResult.getMyRoomId())
+                .roomTypeName(roomTypeRequest.getRoomTypeName())
+                .build();
 
+        RoomType roomTypeSaveResult = roomTypeRepository.save(roomTypeRequestToEntity);
+
+        List<PriceType> priceTypeResult = new ArrayList<>();
+        for (PriceTypeRequest priceTypeRequest : PriceTypeRequests) {
+            PriceType priceTypeRequestToEntity = PriceType.builder()
+                    .myRoomId(saveResult.getMyRoomId())
+                    .priceTypeName(priceTypeRequest.getPriceTypeName())
+                    .build();
+            priceTypeRepository.save(priceTypeRequestToEntity);
+            priceTypeResult.add(priceTypeRequestToEntity);
+        }
 
         return MyRoomResponse.builder()
                 .myRoomName(saveResult.getMyRoomName())
@@ -80,6 +100,8 @@ public class MyRoomServiceImpl implements MyRoomService {
                 .region(saveResult.getRegion())
                 .deposit(saveResult.getDeposit())
                 .rent(saveResult.getRent())
+                .roomType(roomTypeSaveResult)
+                .priceTypes(priceTypeResult)
                 .build();
     }
 
