@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface MyRoomService {
 
-    List<MyRoomResponse> getAllMyRooms();
+    List<MyRoomResponse> getAllRooms();
+
+    List<MyRoomResponse> getAllMyRooms(String username);
 }
