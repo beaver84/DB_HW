@@ -39,8 +39,8 @@ public class SwaggerConfig {
                 .securityContexts(Lists.newArrayList(securityContext()))
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("me.devkuka.tutorial"))
-                .paths(PathSelectors.ant("/**"))
+                .apis(RequestHandlerSelectors.basePackage("me.devkuka.tutorial.controller"))
+                .paths(PathSelectors.ant("/api/**"))
                 .build();
     }
 
