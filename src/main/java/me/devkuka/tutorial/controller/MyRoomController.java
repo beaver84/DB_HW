@@ -1,10 +1,7 @@
 package me.devkuka.tutorial.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.devkuka.tutorial.dto.MyRoomModifyRequest;
-import me.devkuka.tutorial.dto.MyRoomModifyResponse;
-import me.devkuka.tutorial.dto.MyRoomRequest;
-import me.devkuka.tutorial.dto.MyRoomResponse;
+import me.devkuka.tutorial.dto.*;
 import me.devkuka.tutorial.service.MyRoomService;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,9 +36,11 @@ public class MyRoomController {
 
     @PostMapping("/v1/my-room")
     public MyRoomResponse addMyRoom(
-            @RequestBody MyRoomRequest myRoomRequest
+            @RequestBody MyRoomRequest myRoomRequest,
+            @RequestBody RoomTypeRequest roomTypeRequest,
+            @RequestBody List<PriceTypeRequest> PriceTypeRequests
     ){
-        return myRoomService.addMyRoom(myRoomRequest);
+        return myRoomService.addMyRoom(myRoomRequest, roomTypeRequest, PriceTypeRequests);
     }
 
     @PutMapping("/v1/my-room")

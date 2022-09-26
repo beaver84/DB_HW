@@ -5,14 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +40,11 @@ public class MyRoom {
     @OneToMany(mappedBy = "priceTypeId")
     private List<PriceType> priceTypes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "roomTypeId")
-    private List<RoomType> roomTypes = new ArrayList<>();
+    @OneToOne(mappedBy = "myRoom")
+    private RoomType roomType;
 
     @Builder
-    public MyRoom(long myRoomId, String myRoomName, String landlord, String region, int deposit, int rent, List<PriceType> priceTypes, List<RoomType> roomTypes) {
+    public MyRoom(long myRoomId, String myRoomName, String landlord, String region, int deposit, int rent, List<PriceType> priceTypes, RoomType roomType) {
         this.myRoomId = myRoomId;
         this.myRoomName = myRoomName;
         this.landlord = landlord;
@@ -59,6 +52,6 @@ public class MyRoom {
         this.deposit = deposit;
         this.rent = rent;
         this.priceTypes = priceTypes;
-        this.roomTypes = roomTypes;
+        this.roomType = roomType;
     }
 }

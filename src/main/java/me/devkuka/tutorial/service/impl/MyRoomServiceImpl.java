@@ -1,11 +1,10 @@
 package me.devkuka.tutorial.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import me.devkuka.tutorial.dto.MyRoomModifyRequest;
-import me.devkuka.tutorial.dto.MyRoomModifyResponse;
-import me.devkuka.tutorial.dto.MyRoomRequest;
-import me.devkuka.tutorial.dto.MyRoomResponse;
+import me.devkuka.tutorial.dto.*;
 import me.devkuka.tutorial.entity.MyRoom;
+import me.devkuka.tutorial.entity.PriceType;
+import me.devkuka.tutorial.entity.RoomType;
 import me.devkuka.tutorial.repository.MyRoomRepository;
 import me.devkuka.tutorial.service.MyRoomService;
 import org.springframework.stereotype.Service;
@@ -61,7 +60,7 @@ public class MyRoomServiceImpl implements MyRoomService {
     }
 
     @Override
-    public MyRoomResponse addMyRoom(MyRoomRequest myRoomRequest) {
+    public MyRoomResponse addMyRoom(MyRoomRequest myRoomRequest, RoomTypeRequest roomTypeRequest,List<PriceTypeRequest> PriceTypeRequests) {
 
         MyRoom myRoomRequestToEntity = MyRoom.builder()
                 .myRoomName(myRoomRequest.getMyRoomName())
@@ -72,6 +71,8 @@ public class MyRoomServiceImpl implements MyRoomService {
                 .build();
 
         MyRoom saveResult = myRoomRepository.save(myRoomRequestToEntity);
+
+
 
         return MyRoomResponse.builder()
                 .myRoomName(saveResult.getMyRoomName())
