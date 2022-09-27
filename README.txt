@@ -1,6 +1,6 @@
 H2 DB 사용 (주소 : jdbc:h2:tcp://localhost/~/test)
 
-초반 데이터 스크립트 위치 : 루트 디렉토리 -> resources -> data.sql
+시작시 넣어야 할 데이터 스크립트 위치 : 루트 디렉토리 -> resources -> data.sql
 
 스웨거 접속 URL : http://localhost:8080/swagger-ui.html
 

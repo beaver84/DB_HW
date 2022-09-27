@@ -53,6 +53,8 @@ public class MyRoomServiceImpl implements MyRoomService {
     @Override
     public MyRoomResponse getMyRoomById(long myRoomId) {
         MyRoom myRoom = myRoomRepository.findById(myRoomId).orElseThrow(EntityNotFoundException::new);
+        RoomType roomTypeEntity = roomTypeRepository.findByMyRoomId(myRoomId);
+        List<PriceType> priceTypeEntities = priceTypeRepository.findAllByMyRoomId(myRoomId);
 
         return MyRoomResponse.builder()
                 .myRoomName(myRoom.getMyRoomName())
@@ -60,6 +62,8 @@ public class MyRoomServiceImpl implements MyRoomService {
                 .region(myRoom.getRegion())
                 .deposit(myRoom.getDeposit())
                 .rent(myRoom.getRent())
+                .roomType(roomTypeEntity)
+                .priceTypes(priceTypeEntities)
                 .build();
     }
 
